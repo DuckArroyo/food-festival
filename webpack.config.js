@@ -24,4 +24,12 @@ module.exports = {
       jQuery: "jquery",
     }),
   ],
+  //!From Ben. My code is not working.
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "./"),
+    },
+    compress: true,
+    port: 8080,
+  },
 };
