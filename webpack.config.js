@@ -15,13 +15,12 @@ module.exports = {
     filename: "main.bundle.js",
   },
 
-  //By default, webpack wants to run in production mode. In this mode, webpack will minify our code for us automatically, along with some other nice additions. We want our code to run in development mode
-  mode: "development",
-  //from class
   plugins: [
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery",
     }),
   ],
+  //By default, webpack wants to run in production mode. In this mode, webpack will minify our code for us automatically, along with some other nice additions. We want our code to run in development mode
+  mode: "development",
 };
