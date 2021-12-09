@@ -30,3 +30,6 @@ or
 
 
 Running webpack makes sense, but why add the flag `--watch`? Well, when we pass --watch into our command, webpack will automatically watch for saved changes to our files. When any change is recognized, it will re-bundle the code. When we talk about the build, we are talking about webpack's process of bundling our code and outputting a new bundled, production-ready file. If at any time we would like to terminate the webpack `--watch` process, we can simply press `Ctrl+C`.
+
+To run webpack
+- `npm run build`
