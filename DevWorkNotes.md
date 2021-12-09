@@ -45,4 +45,3 @@ There are several ways to code split, which depend on which part of your project
 
 - Dynamic splitting separates code and allows dynamic importing of modules. This type of splitting is often best for single-page applications that use front-end routing.
 
-### Modularization

@@ -11,12 +11,17 @@ const BundleAnalyzerPlugin =
 //https://webpack.js.org/configuration/mode/
 module.exports = {
   //The entry point is the root of the bundle and the beginning of the dependency graph, so give it the relative path to the client's code.
-  entry: "./assets/js/script.js",
+  entry: {
+    app: "./assets/js/script.js",
+    events: "./assets/js/events.js",
+    schedule: "./assets/js/schedule.js",
+    tickets: "./assets/js/tickets.js",
+  },
 
   //output that bundled code to a folder that we specify
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "main.bundle.js",
+    filename: "[name].bundle.js",
+    path: __dirname + "/dist",
   },
 
   plugins: [
