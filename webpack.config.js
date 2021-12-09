@@ -4,6 +4,10 @@ const path = require("path");
 //import webpack methods
 const webpack = require("webpack");
 
+// imports analyzer
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+
 //https://webpack.js.org/configuration/mode/
 module.exports = {
   //The entry point is the root of the bundle and the beginning of the dependency graph, so give it the relative path to the client's code.
@@ -19,6 +23,9 @@ module.exports = {
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery",
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: "static", // the report outputs to an HTML file in the dist folder
     }),
   ],
   //By default, webpack wants to run in production mode. In this mode, webpack will minify our code for us automatically, along with some other nice additions. We want our code to run in development mode
