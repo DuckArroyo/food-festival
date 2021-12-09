@@ -1,16 +1,11 @@
 //import webpack methods
 const webpack = require("webpack");
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 // const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
 // const WebpackPwaManifest = require("webpack-pwa-manifest");
 const path = require("path");
 
-// imports analyzer
-const BundleAnalyzerPlugin =
-  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
-
 //https://webpack.js.org/configuration/mode/
-const config = {
+module.exports = {
   //The entry point is the root of the bundle and the beginning of the dependency graph, so give it the relative path to the client's code.
   entry: {
     app: "./assets/js/script.js",
@@ -56,9 +51,6 @@ const config = {
       $: "jquery",
       jQuery: "jquery",
     }),
-    new BundleAnalyzerPlugin({
-      analyzerMode: "static",
-    }),
   ],
   //!From Ben. My code is not working.
   devServer: {
@@ -72,5 +64,3 @@ const config = {
   //By default, webpack wants to run in production mode. In this mode, webpack will minify our code for us automatically, along with some other nice additions. We want our code to run in development mode
   mode: "development",
 };
-
-module.exports = config;
