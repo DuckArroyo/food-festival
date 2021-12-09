@@ -23,6 +23,15 @@ module.exports = {
     filename: "[name].bundle.js",
     path: __dirname + "/dist",
   },
+  module: {
+    rules: [
+      {
+        //look for any file with this criteria and ...
+        test: /\.jpeg$/i,
+        use: [{ loader: "file-loader" }],
+      },
+    ],
+  },
 
   plugins: [
     new webpack.ProvidePlugin({

@@ -45,3 +45,9 @@ There are several ways to code split, which depend on which part of your project
 
 - Dynamic splitting separates code and allows dynamic importing of modules. This type of splitting is often best for single-page applications that use front-end routing.
 
+### Optimize Images with webpack
+
+1. Download our `file-loader` by installing the npm package that will emit our images to our output path.
+2. Configure our webpack `config` object to use the `file-loader`.
+3. Import our image files into the JavaScript file.
+4. Optimize image files with `image-webpack-loader`.
