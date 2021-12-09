@@ -1,27 +1,59 @@
-//provides access to Node.js via npm modules.
-const path = require("path");
-
 //import webpack methods
 const webpack = require("webpack");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+// const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
+// const WebpackPwaManifest = require("webpack-pwa-manifest");
+const path = require("path");
 
 //https://webpack.js.org/configuration/mode/
-module.exports = {
+const config = {
   //The entry point is the root of the bundle and the beginning of the dependency graph, so give it the relative path to the client's code.
-  entry: "./assets/js/script.js",
+  entry: {
+    app: "./assets/js/script.js",
+    events: "./assets/js/events.js",
+    schedule: "./assets/js/schedule.js",
+    tickets: "./assets/js/tickets.js",
+  },
 
   //output that bundled code to a folder that we specify
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "main.bundle.js",
+    filename: "[name].bundle.js",
+    path: `${__dirname}/dist`,
   },
 
-  //By default, webpack wants to run in production mode. In this mode, webpack will minify our code for us automatically, along with some other nice additions. We want our code to run in development mode
-  mode: "development",
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              esModule: false,
+              name(file) {
+                return "[path][name].[ext]";
+              },
+              publicPath(url) {
+                return url.replace("../", "/assets/");
+              },
+            },
+          },
+          {
+            loader: "image-webpack-loader",
+          },
+        ],
+      },
+    ],
+  },
+
   //from class
   plugins: [
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery",
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: "static",
     }),
   ],
   //!From Ben. My code is not working.
@@ -32,4 +64,9 @@ module.exports = {
     compress: true,
     port: 8080,
   },
+
+  //By default, webpack wants to run in production mode. In this mode, webpack will minify our code for us automatically, along with some other nice additions. We want our code to run in development mode
+  mode: "development",
 };
+
+module.exports = config;
